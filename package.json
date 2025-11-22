@@ -9,7 +9,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "lint:fix": "eslint src/**/*.js --fix",
+    "rsr:verify": "node scripts/rsr-verify.js"
   },
   "keywords": [
     "bsod",
@@ -19,7 +20,7 @@
     "web-app"
   ],
   "author": "",
-  "license": "MIT",
+  "license": "(GPL-3.0-or-later OR Palimpsest-0.8)",
   "dependencies": {
     "express": "^4.18.2",
     "helmet": "^7.1.0",

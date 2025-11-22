@@ -4,8 +4,10 @@
 
 A humorous, feature-rich web application that displays authentic-looking Blue Screen of Death (BSOD) errors from various Windows versions. Perfect for pranks, screenshots, presentations, or just nostalgia!
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Dual](https://img.shields.io/badge/License-GPL--3.0--or--Palimpsest--0.8-blue.svg)](LICENSE)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
+[![RSR Compliance](https://img.shields.io/badge/RSR-Bronze-orange)](https://github.com/rhodium-framework/rsr)
+[![TPCF](https://img.shields.io/badge/TPCF-Perimeter%203-green)](TPCF.md)
 
 ## Features
 
@@ -384,13 +386,91 @@ This application includes several security features:
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
+## RSR Compliance
+
+This project adheres to the **Rhodium Standard Repository (RSR)** framework at **Bronze Level**.
+
+### What is RSR?
+
+RSR is a comprehensive framework for building production-ready, politically autonomous software with emphasis on:
+- Complete documentation
+- Security best practices
+- Reproducible builds
+- Community governance
+- Emotional safety
+
+### Compliance Features
+
+✅ **Complete Documentation**
+- README.md, CLAUDE.md, API.md
+- SECURITY.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md
+- MAINTAINERS.md, CHANGELOG.md, TPCF.md
+
+✅ **.well-known Directory** (RFC Compliance)
+- security.txt (RFC 9116)
+- ai.txt (AI training policies)
+- humans.txt (attribution)
+
+✅ **Dual Licensing**
+- GPL-3.0 OR Palimpsest v0.8
+- Clear license choice for users
+- See [LICENSE](LICENSE) for details
+
+✅ **Build System**
+- npm/Node.js package management
+- justfile (50+ build recipes)
+- flake.nix (Nix reproducible builds)
+- Docker + Docker Compose
+
+✅ **TPCF (Tri-Perimeter Contribution Framework)**
+- Perimeter 3: Community Sandbox (open contribution)
+- Graduated trust model
+- Emotional safety emphasis
+- See [TPCF.md](TPCF.md)
+
+✅ **Security**
+- Helmet.js security headers
+- Rate limiting
+- CORS configuration
+- Input validation
+- Regular security audits
+
+✅ **Testing**
+- Unit tests + Integration tests
+- Code coverage reporting
+- CI/CD pipeline
+
+### Verify Compliance
+
+```bash
+# Using justfile
+just validate
+
+# Using Node.js directly
+node scripts/rsr-verify.js
+
+# Using Nix
+nix run .#validate
+```
+
+### Learn More
+
+- **RSR Framework**: https://github.com/rhodium-framework/rsr
+- **TPCF**: See [TPCF.md](TPCF.md)
+- **Palimpsest License**: See [LICENSES/Palimpsest-0.8.txt](LICENSES/Palimpsest-0.8.txt)
+
 ## Contributing
 
 Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is dual-licensed. You may use this software under **EITHER**:
+
+- **GNU General Public License v3.0** (GPL-3.0)
+- **Palimpsest License v0.8**
+
+See the [LICENSE](LICENSE) file for complete details and guidance on choosing a license.
 
 ## Acknowledgments
 
