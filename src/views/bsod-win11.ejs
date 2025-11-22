@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:(</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0067C0;
+            color: white;
+            font-family: 'Segoe UI Variable', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 0 50px;
+        }
+
+        .sad-face {
+            font-size: 180px;
+            font-weight: 200;
+            margin-bottom: 40px;
+            letter-spacing: -10px;
+        }
+
+        .main-message {
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .description {
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            max-width: 650px;
+            font-weight: 300;
+        }
+
+        .percentage {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .details {
+            margin-top: 80px;
+            opacity: 0.85;
+        }
+
+        .stop-code {
+            font-size: 17px;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .technical {
+            font-size: 15px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .qr-section {
+            position: fixed;
+            bottom: 60px;
+            right: 60px;
+            text-align: center;
+        }
+
+        .qr-code {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-code img {
+            display: block;
+        }
+
+        .qr-message {
+            font-size: 15px;
+            max-width: 220px;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .sad-face {
+                font-size: 120px;
+            }
+
+            .main-message {
+                font-size: 28px;
+            }
+
+            .description {
+                font-size: 18px;
+            }
+
+            .qr-section {
+                position: static;
+                margin-top: 50px;
+            }
+        }
+
+        /* Modern loading animation */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .percentage {
+            animation: fadeInOut 2.5s ease-in-out infinite;
+        }
+
+        /* Subtle background pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.02) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.02) 50%, transparent 52%);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sad-face">:(</div>
+        <div class="main-message">
+            Your device ran into a problem and needs to restart.
+        </div>
+        <div class="description">
+            <%= description %>
+        </div>
+        <div class="percentage">
+            <%= percentage %>% complete
+        </div>
+        <div class="details">
+            <div class="stop-code">
+                Stop code: <%= stopCode %>
+            </div>
+            <div class="technical">
+                <%= technicalDetail %>
+            </div>
+        </div>
+    </div>
+
+    <% if (qrCode) { %>
+    <div class="qr-section">
+        <div class="qr-code">
+            <img src="<%= qrCode %>" alt="QR Code">
+        </div>
+        <div class="qr-message">
+            <%= qrMessage %>
+        </div>
+    </div>
+    <% } %>
+
+    <script>
+        // Prevent scrolling
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Easter egg: Press 'W' for Windows XP
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'w' || e.key === 'W') {
+                window.location.href = '/?style=winxp';
+            }
+            if (e.key === '7') {
+                window.location.href = '/?style=win7';
+            }
+        });
+
+        // Fake progress
+        let currentPercentage = <%= percentage %>;
+        const percentageEl = document.querySelector('.percentage');
+
+        setInterval(() => {
+            if (currentPercentage < 100 && Math.random() > 0.6) {
+                currentPercentage = Math.min(100, currentPercentage + 1);
+                percentageEl.textContent = currentPercentage + '% complete';
+            }
+        }, 2500);
+    </script>
+</body>
+</html>
