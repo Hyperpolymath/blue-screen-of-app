@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0000AA;
+            color: #AAAAAA;
+            font-family: 'Perfect DOS VGA 437', 'Fixedsys', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.4;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+        }
+
+        .header-bar {
+            background: #AAAAAA;
+            color: #0000AA;
+            padding: 5px 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .error-header {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .stop-code {
+            color: white;
+            font-size: 18px;
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+
+        .separator {
+            color: white;
+            margin: 15px 0;
+        }
+
+        .technical-info {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #AAAAAA;
+        }
+
+        .memory-address {
+            color: white;
+            font-family: monospace;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .qr-section {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+        }
+
+        .qr-code {
+            background: #AAAAAA;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+        .qr-code img {
+            display: block;
+        }
+
+        .qr-message {
+            max-width: 170px;
+            color: #AAAAAA;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            .error-header {
+                font-size: 16px;
+            }
+
+            .stop-code {
+                font-size: 16px;
+            }
+
+            .qr-section {
+                position: static;
+                margin-top: 20px;
+            }
+        }
+
+        /* Scan line effect for authenticity */
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to bottom,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            animation: scanline 6s linear infinite;
+            pointer-events: none;
+        }
+
+        /* CRT flicker effect */
+        @keyframes flicker {
+            0% { opacity: 0.98; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        body {
+            animation: flicker 0.15s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar">
+            Windows
+        </div>
+
+        <div class="error-header">
+            A problem has been detected and Windows has been shut down to prevent damage<br>
+            to your computer.
+        </div>
+
+        <div class="message">
+            <%= description %>
+        </div>
+
+        <div class="separator">
+            ********************************************************************************
+        </div>
+
+        <div class="stop-code">
+            *** STOP: <%= stopCode %>
+        </div>
+
+        <div class="technical-info">
+            <%= technicalDetail %>
+        </div>
+
+        <div class="instructions">
+            If this is the first time you've seen this stop error screen,<br>
+            restart your computer. If this screen appears again, follow<br>
+            these steps:<br>
+            <br>
+            Check to be sure you have adequate disk space. If a driver is<br>
+            identified in the stop message, disable the driver or check<br>
+            with the manufacturer for driver updates. Try changing video<br>
+            adapters.<br>
+            <br>
+            Check with your hardware vendor for any BIOS updates. Disable<br>
+            BIOS memory options such as caching or shadowing. If you need to<br>
+            use Safe Mode to remove or disable components, restart your<br>
+            computer, press F8 to select Advanced Startup Options, and then<br>
+            select Safe Mode.
+        </div>
+
+        <div class="footer">
+            Technical information:<br>
+            <br>
+            *** STOP: 0x0000007B (0xF78D2524, 0xC0000034, 0x00000000, 0x00000000)
+        </div>
+
+        <div class="memory-address">
+            Beginning dump of physical memory<br>
+            Physical memory dump complete.<br>
+            Contact your system administrator or technical support group for further<br>
+            assistance.
+        </div>
+    </div>
+
+    <% if (qrCode) { %>
+    <div class="qr-section">
+        <div class="qr-code">
+            <img src="<%= qrCode %>" alt="QR Code">
+        </div>
+        <div class="qr-message">
+            <%= qrMessage %>
+        </div>
+    </div>
+    <% } %>
+
+    <script>
+        // Prevent scrolling
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Easter egg: Press ESC to go to modern version
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = '/?style=win11';
+            }
+            // F8 for "safe mode" (actually win7 style)
+            if (e.key === 'F8') {
+                window.location.href = '/?style=win7';
+            }
+        });
+
+        // Random screen "glitch" for authenticity
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                document.body.style.transform = 'translateX(' + (Math.random() * 4 - 2) + 'px)';
+                setTimeout(() => {
+                    document.body.style.transform = 'translateX(0)';
+                }, 50);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

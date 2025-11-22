@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:(</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0178D4;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 0 50px;
+        }
+
+        .sad-face {
+            font-size: 150px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .main-message {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .percentage {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .details {
+            margin-top: 60px;
+        }
+
+        .stop-code {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .technical {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .qr-section {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            text-align: center;
+        }
+
+        .qr-code {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .qr-code img {
+            display: block;
+        }
+
+        .qr-message {
+            font-size: 14px;
+            max-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .sad-face {
+                font-size: 100px;
+            }
+
+            .main-message {
+                font-size: 24px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .qr-section {
+                position: static;
+                margin-top: 40px;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .percentage {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sad-face">:(</div>
+        <div class="main-message">
+            Your PC ran into a problem and needs to restart.
+        </div>
+        <div class="description">
+            <%= description %>
+        </div>
+        <div class="percentage">
+            <%= percentage %>% complete
+        </div>
+        <div class="details">
+            <div class="stop-code">
+                Stop code: <%= stopCode %>
+            </div>
+            <div class="technical">
+                <%= technicalDetail %>
+            </div>
+        </div>
+    </div>
+
+    <% if (qrCode) { %>
+    <div class="qr-section">
+        <div class="qr-code">
+            <img src="<%= qrCode %>" alt="QR Code">
+        </div>
+        <div class="qr-message">
+            <%= qrMessage %>
+        </div>
+    </div>
+    <% } %>
+
+    <script>
+        // Prevent scrolling
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+                document.body.style.background = '#00AA00';
+                setTimeout(() => {
+                    document.body.style.background = '#0178D4';
+                }, 1000);
+            }
+        });
+
+        // Fake progress (slowly increases)
+        let currentPercentage = <%= percentage %>;
+        const percentageEl = document.querySelector('.percentage');
+
+        setInterval(() => {
+            if (currentPercentage < 100 && Math.random() > 0.5) {
+                currentPercentage += 1;
+                percentageEl.textContent = currentPercentage + '% complete';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
