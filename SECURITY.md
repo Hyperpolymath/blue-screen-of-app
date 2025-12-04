@@ -62,7 +62,7 @@ Please include the following information in your report:
 4. **Input Validation**: All query parameters sanitized
 5. **Error Handling**: No sensitive information leaked in error responses
 6. **Dependencies**: Regular security audits via `npm audit`
-7. **Docker Security**: Non-root user, minimal base image
+7. **Container Security**: Rootless Podman, minimal base image
 8. **No Secrets**: No hardcoded credentials or API keys
 
 ### Security Best Practices
