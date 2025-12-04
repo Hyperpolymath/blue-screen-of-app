@@ -15,7 +15,7 @@ image:https://img.shields.io/badge/RSR-Bronze-orange[RSR]
 
 [source,bash]
 ----
-./scripts/bootstrap.sh  # Install Deno, Podman, Just
+# Install: Deno, Podman, Just (manual install)
 just build              # Compile ReScript + export config
 just podman-run         # Deploy container
 # Visit http://localhost:8080 (or https://yourserver.com via proxy)
