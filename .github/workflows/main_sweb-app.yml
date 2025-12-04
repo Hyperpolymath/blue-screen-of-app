@@ -1,37 +1,35 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy Node.js app to Azure Web App - sweb-app
+# Azure deployment (Deno-based)
+name: Deploy to Azure
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Node.js version
-        uses: actions/setup-node@v1
+      
+      - uses: denoland/setup-deno@v1
         with:
-          node-version: '18.x'
+          deno-version: v1.x
 
-      - name: npm install, build, and test
+      - name: Build
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          cat > config.json <<'EOF'
+          {"server":{"port":8080},"app":{"name":"BSOD"}}
+          EOF
+          deno cache src/server.js
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4.1.7
         with:
-          name: node-app
-          path: .
+          name: deno-app
+          path: |
+            src/
+            config.json
+            deno.json
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,13 +39,11 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4.1.7
+      - uses: actions/download-artifact@v4.1.7
         with:
-          name: node-app
+          name: deno-app
 
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
+      - uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'sweb-app'
