@@ -173,9 +173,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This is the first production release. If you had the initial skeleton:
 
 1. Pull latest changes
-2. Run `npm install` to install all dependencies
+2. Run `deno task dev` to install all dependencies
 3. Copy `.env.example` to `.env` and configure
-4. Run `npm start` to start the server
+4. Run `deno task start` to start the server
 5. Visit `http://localhost:3000` to see the BSOD
 
 === Breaking Changes

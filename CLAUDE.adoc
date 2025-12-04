@@ -330,9 +330,9 @@ Features:
 ==== Build Job (Windows)
 1. Checkout code
 2. Setup Node.js 18.x
-3. Run `npm install`
-4. Run `npm run build --if-present`
-5. Run `npm run test --if-present`
+3. Run `deno task dev`
+4. Run `just build --if-present`
+5. Run `deno task test` (if tests exist)
 6. Upload artifacts
 
 ==== Deploy Job (Ubuntu)
@@ -426,22 +426,22 @@ All configurable via `.env` file:
 
 ```bash
 = Install dependencies
-npm install
+deno task dev
 
 = Run in development mode
-npm run dev
+deno task dev
 
 = Run tests
-npm test
+deno task test
 
 = Run tests in watch mode
-npm run test:watch
+deno task test:watch
 
 = Lint code
-npm run lint
+deno task lint
 
 = Fix linting issues
-npm run lint:fix
+deno task fmt
 ```
 
 == API Rate Limiting

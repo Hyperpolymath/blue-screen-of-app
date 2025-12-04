@@ -71,7 +71,7 @@ When using this application:
 
 1. **Environment Variables**: Never commit `.env` files with secrets
 2. **HTTPS**: Always use HTTPS in production
-3. **Updates**: Keep dependencies updated (`npm audit fix`)
+3. **Updates**: Keep Deno updated (`deno upgrade`)
 4. **Logging**: Review logs regularly for suspicious activity
 5. **Rate Limiting**: Adjust rate limits based on your traffic patterns
 6. **CORS**: Restrict origins in production environments

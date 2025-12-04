@@ -76,7 +76,7 @@ Want to add a macOS kernel panic or Linux panic screen?
 * **Write clear commit messages** - Use conventional commits format
 * **Update documentation** - Keep README.md and API.md in sync
 * **Add tests** - Maintain or improve code coverage
-* **Follow the code style** - Run `npm run lint:fix`
+* **Follow the code style** - Run `deno task fmt`
 
 ==== Commit Message Format
 
@@ -113,7 +113,7 @@ docs(readme): update installation instructions
 === Prerequisites
 
 * Node.js 18.x or later
-* npm 9.x or later
+* Deno 1.39+ required
 * Git
 
 === Setup Steps
@@ -127,36 +127,36 @@ cd blue-screen-of-app
 git remote add upstream https://github.com/ORIGINAL_OWNER/blue-screen-of-app.git
 
 = Install dependencies
-npm install
+deno task dev
 
 = Copy environment file
 cp .env.example .env
 
 = Start development server
-npm run dev
+deno task dev
 ```
 
 === Running Tests
 
 ```bash
 = Run all tests
-npm test
+deno task test
 
 = Run tests in watch mode
-npm run test:watch
+deno task test:watch
 
 = Run with coverage
-npm test -- --coverage
+deno task test -- --coverage
 ```
 
 === Linting
 
 ```bash
 = Check for issues
-npm run lint
+deno task lint
 
 = Auto-fix issues
-npm run lint:fix
+deno task fmt
 ```
 
 == Project Structure

@@ -363,7 +363,7 @@ curl http://localhost:3000/api/metrics
 * `STACKOVERFLOW_COPY_PASTE_ERROR` - Malicious StackOverflow code
 * `GIT_COMMIT_WITHOUT_MESSAGE` - Commit with "fix stuff"
 * `PRODUCTION_DEPLOYMENT_ON_FRIDAY` - Friday 4:45 PM deployment
-* `NPM_INSTALL_TIMEOUT` - npm install running for 3 hours
+* `NPM_INSTALL_TIMEOUT` - deno task dev running for 3 hours
 * `DEPENDENCY_HELL_DETECTED` - Sentient node_modules
 * `MERGE_CONFLICT_ANXIETY` - Unresolved merge conflicts
 * `SEMICOLON_MISSING` - JavaScript without semicolons
