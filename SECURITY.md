@@ -61,8 +61,8 @@ Please include the following information in your report:
 3. **CORS**: Configurable cross-origin resource sharing
 4. **Input Validation**: All query parameters sanitized
 5. **Error Handling**: No sensitive information leaked in error responses
-6. **Dependencies**: Regular security audits via `npm audit`
-7. **Docker Security**: Non-root user, minimal base image
+6. **Dependencies**: Zero npm dependencies, pure Deno
+7. **Container Security**: Rootless Podman, minimal base image
 8. **No Secrets**: No hardcoded credentials or API keys
 
 ### Security Best Practices
@@ -71,7 +71,7 @@ When using this application:
 
 1. **Environment Variables**: Never commit `.env` files with secrets
 2. **HTTPS**: Always use HTTPS in production
-3. **Updates**: Keep dependencies updated (`npm audit fix`)
+3. **Updates**: Keep Deno updated (`deno upgrade`)
 4. **Logging**: Review logs regularly for suspicious activity
 5. **Rate Limiting**: Adjust rate limits based on your traffic patterns
 6. **CORS**: Restrict origins in production environments
