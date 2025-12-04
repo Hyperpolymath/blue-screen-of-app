@@ -38,8 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Comprehensive test suite (Jest + Supertest)
 * Unit tests for utilities (errorMessages, analytics)
 * Integration tests for API and routes
-* Docker support with multi-stage builds
-* Docker Compose configuration
+* Podman support with multi-stage builds
+* Podman Compose configuration
 * Security features (Helmet, rate limiting, CORS)
 * Performance optimizations (compression, caching)
 * README.md with complete usage documentation
@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * CODE_OF_CONDUCT.md for community standards
 * .env.example with configuration template
 * .gitignore for Node.js projects
-* .containerignore for Docker builds
+* .containerignore for Podman builds
 * Azure Web App deployment workflow
 
 === Features
@@ -104,12 +104,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Input validation and sanitization
 * Global error handling
 * No sensitive data exposure
-* Docker non-root user
+* Podman non-root user
 
 ==== Performance
 * gzip compression on all responses
 * Efficient Express routing
-* Docker multi-stage builds for smaller images
+* Podman multi-stage builds for smaller images
 * Static asset caching
 * Asynchronous Winston logging
 
@@ -121,8 +121,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Mock-based testing for external dependencies
 
 ==== DevOps
-* Dockerfile with multi-stage build
-* Docker Compose with health checks
+* Podmanfile with multi-stage build
+* Podman Compose with health checks
 * Non-root user in containers
 * dumb-init for signal handling
 * Volume mounting for logs
@@ -146,7 +146,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * **View Engine**: EJS
 * **Testing**: Jest + Supertest
 * **Logging**: Winston
-* **Containerization**: Docker + Docker Compose
+* **Containerization**: Podman + Podman Compose
 * **Deployment**: Azure Web App
 * **CI/CD**: GitHub Actions
 

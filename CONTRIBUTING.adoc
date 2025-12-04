@@ -101,7 +101,7 @@ Types:
 
 Examples:
 ```
-feat(errors): add DOCKER_WHALE_PANIC error code
+feat(errors): add PODMAN_WHALE_PANIC error code
 
 fix(api): handle invalid percentage values correctly
 

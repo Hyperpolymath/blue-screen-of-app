@@ -44,7 +44,7 @@ _(No emeritus maintainers yet)_
 | Testing | Project Lead | Jest, Supertest, coverage |
 | Documentation | Project Lead | README, API docs, guides |
 | Security | Project Lead | SECURITY.md, vulnerability response |
-| DevOps | Project Lead | Docker, CI/CD, deployments |
+| DevOps | Project Lead | Podman, CI/CD, deployments |
 | Community | Project Lead | Issues, PRs, discussions |
 
 == How to Become a Maintainer
