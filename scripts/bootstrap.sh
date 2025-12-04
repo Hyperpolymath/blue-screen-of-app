@@ -152,10 +152,13 @@ install_deno() {
 install_rescript() {
     echo "📦 Installing ReScript compiler..."
 
-    # ReScript: Using pre-compiled stub files (.bs.js)
-    # Full ReScript compiler installation not needed for this project
-    echo "✓ ReScript stub files already included (.bs.js)"
-    echo "  No additional installation required"
+    # ReScript needs npm for now, but we'll use deno later
+    if ! command_exists npm; then
+        echo "⚠️  npm not found, skipping ReScript (you can compile manually)"
+        return
+    fi
+
+    npm install -g rescript@latest
     echo "✅ ReScript installed"
 }
 

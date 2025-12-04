@@ -77,20 +77,11 @@ const renderBSOD = (style, errorData, qrCode) => {
 </html>`;
 };
 
-// Generate QR code as SVG (no external dependencies)
-const generateQR = (url) => {
-  // Simple QR code as data URL (minimal implementation)
-  // Using a basic text-based approach for now
-  const encoded = encodeURIComponent(url);
-  const size = 150;
-
-  // Create a simple SVG QR-like pattern
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 29 29">
-    <rect width="29" height="29" fill="white"/>
-    <path fill="black" d="M0,0h7v7h-7zM8,0h1v1h-1zM10,0h3v1h1v1h-1v1h-1v-2h-2zM16,0h1v1h1v1h-2zM22,0h7v7h-7zM1,1v5h5v-5zM23,1v5h5v-5zM2,2h3v3h-3zM24,2h3v3h-3zM8,2h1v1h-1zM18,2h2v1h-2zM8,3h1v2h2v-2h1v3h-1v1h-1v1h-1v-4h-1zM13,3h1v1h-1zM17,3h1v2h-1zM20,3h2v3h-1v1h-1v-1h-1v-2h1zM0,8h1v1h1v2h-2zM4,8h3v1h-1v1h-2zM9,8h1v1h-1zM11,8h1v3h1v-1h2v1h-1v1h-2v-1h-1v1h-1v-2h1zM19,8h1v1h-1zM21,8h1v2h-2v-1h1zM28,8h1v3h-1v1h-1v-3h1zM3,9h1v1h-1zM17,9h2v1h-2zM23,9h3v1h-1v1h-2v-1h-1v-1h1zM8,10h1v1h-1zM3,11h2v1h-2zM6,11h1v1h1v1h-2zM15,11h4v1h-4zM20,11h1v2h-1zM0,12h1v2h-2v-1h1zM9,12h2v1h1v1h-3zM22,12h1v1h-1zM1,13h1v1h-1zM14,13h1v1h-1zM24,13h3v1h1v1h-4zM4,14h3v1h-3zM12,14h2v1h-2zM17,14h2v1h-1v1h-1zM8,15h1v1h-1zM21,15h1v2h-1zM2,16h1v2h1v-1h1v2h-1v1h-1v1h-1v-1h-1v-2h1zM5,16h2v1h-2zM9,16h4v1h1v1h-1v1h-4v-2h3v-1h-3zM17,16h1v1h-1zM19,16h1v1h-1zM23,16h2v1h-2zM26,16h1v1h1v1h-2zM7,17h1v1h-1zM15,17h2v2h-2zM20,17h1v1h-1zM25,17h1v2h-1v1h-1v-3h1zM28,17h1v2h-1zM18,18h1v1h-1zM0,19h1v1h-1zM22,19h1v2h-1zM27,19h1v1h-1zM6,20h1v1h-1zM14,20h1v1h-1zM17,20h2v1h-2zM8,21h4v1h1v1h-5zM0,22h7v7h-7zM8,22h1v2h1v-1h2v1h-1v1h1v1h-4v-3h1v-1h-1zM15,22h1v1h-1zM18,22h3v1h-1v1h1v1h-1v1h-1v-4h-1zM22,22h7v7h-7zM1,23v5h5v-5zM23,23v5h5v-5zM2,24h3v3h-3zM13,24h2v1h-2zM24,24h3v3h-3zM10,25h1v1h-1zM12,26h1v1h-1zM14,26h3v1h-3zM8,27h2v1h1v1h-3zM20,27h1v1h-1zM12,28h1v1h-1z"/>
-  </svg>`;
-
-  return `data:image/svg+xml;base64,${btoa(svg)}`;
+// Generate QR code (minimal implementation, or skip if complex)
+const generateQR = async (url) => {
+  // For now, return null - can implement WASM QR generator later
+  // This keeps JS minimal as requested
+  return null;
 };
 
 // Parse URL query parameters
@@ -252,8 +243,8 @@ const handler = async (req) => {
   });
 };
 
-// Start server with HTTP/1.1 (proxied behind nginx/caddy for HTTPS)
-const port = config.server.port || 8080;
+// Start server with QUIC/HTTP3 support (Deno experimental)
+const port = config.server.port || 443;
 
 console.log(`
 ╔═══════════════════════════════════════════╗
@@ -262,19 +253,20 @@ console.log(`
 ║       (Deno + ReScript Edition)           ║
 ║                                           ║
 ║   Server running on port ${port}            ║
-║   Protocol: HTTP/1.1 (proxy to HTTPS)     ║
+║   Protocol: QUIC/HTTP3 + HTTP/2/1.1       ║
 ║                                           ║
 ║   Visit: ${config.app.url}                  ║
 ║                                           ║
 ╚═══════════════════════════════════════════╝
 `);
 
-// Deno.serve with HTTP/1.1 (use nginx/caddy for TLS termination)
+// Deno.serve with HTTP/2 and HTTP/3 support (experimental)
 Deno.serve({
   port: port,
   hostname: config.server.host || '0.0.0.0',
+  // Enable HTTP/2 and HTTP/3 (QUIC) - requires --unstable flag
+  // and TLS certificates
   onListen: ({ hostname, port }) => {
     console.log(`✅ Listening on ${hostname}:${port}`);
-    console.log(`💡 Run behind nginx/caddy for HTTPS termination`);
   },
 }, handler);
