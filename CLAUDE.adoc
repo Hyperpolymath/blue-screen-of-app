@@ -12,7 +12,7 @@ Blue Screen of App is a production-ready, feature-rich web application that disp
 * **View Engine**: EJS (Embedded JavaScript Templates)
 * **Testing**: Jest + Supertest
 * **Logging**: Winston
-* **Containerization**: Podman + Podman Compose
+* **Containerization**: Docker + Docker Compose
 * **Deployment**: Azure Web App (sweb-app)
 * **CI/CD**: GitHub Actions
 
@@ -68,9 +68,9 @@ blue-screen-of-app/
 ├── logs/                          # Application logs (auto-created)
 ├── .env.example                   # Environment template
 ├── .gitignore                     # Git ignore rules
-├── .containerignore                  # Container ignore rules
-├── Podmanfile                     # Container configuration
-├── podman-compose.yml             # Podman Compose setup
+├── .dockerignore                  # Docker ignore rules
+├── Dockerfile                     # Docker configuration
+├── docker-compose.yml             # Docker Compose setup
 ├── package.json                   # Dependencies and scripts
 ├── API.md                         # API documentation
 ├── CLAUDE.md                      # This file
@@ -293,11 +293,11 @@ Features:
 }
 ```
 
-== Podman Configuration
+== Docker Configuration
 
 === Multi-Stage Build
 
-*File*: `Podmanfile`
+*File*: `Dockerfile`
 
 ==== Builder Stage
 * Node.js 18 Alpine base
@@ -310,9 +310,9 @@ Features:
 * Health check configured
 * Exposes port 3000
 
-=== Podman Compose
+=== Docker Compose
 
-*File*: `podman-compose.yml`
+*File*: `docker-compose.yml`
 
 Features:
 * Environment variable configuration
@@ -354,7 +354,7 @@ All configurable via `.env` file:
 
 1. **Compression** - gzip compression on all responses
 2. **Static Asset Caching** - Efficient serving of CSS/JS
-3. **Podman Multi-stage** - Smaller production images
+3. **Docker Multi-stage** - Smaller production images
 4. **Efficient Routing** - Express best practices
 5. **Winston Logging** - Asynchronous, non-blocking logs
 
@@ -513,7 +513,7 @@ Potential additions (documented in README.md):
 2. **Input sanitization** - Query params validated
 3. **Rate limiting** - Prevents abuse
 4. **Security headers** - Helmet.js protection
-5. **Non-root user** - Podman security
+5. **Non-root user** - Docker security
 6. **No eval/exec** - No dynamic code execution
 7. **Dependencies** - Regular updates needed
 
@@ -547,7 +547,7 @@ Blue Screen of App has evolved from a simple concept into a comprehensive, produ
 
 * **Clean Architecture** - Well-organized, modular code
 * **Best Practices** - Security, testing, documentation
-* **Scalability** - Podman, health checks, metrics
+* **Scalability** - Docker, health checks, metrics
 * **Maintainability** - Clear structure, comprehensive docs
 * **User Experience** - Multiple styles, customization, API
 * **Developer Experience** - Good DX with tests, linting, clear code
