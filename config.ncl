@@ -15,18 +15,13 @@
 
   # Server configuration
   server = {
-    port | default = 443,
+    port | default = 8080,
     host | default = "0.0.0.0",
     env | default = "production",
-    secure | default = true,
+    secure | default = false,  # TLS handled by reverse proxy
 
-    # Protocol preferences
-    protocols = {
-      quic | default = true,
-      http3 | default = true,
-      http2 | default = true,
-      http1 | default = true,
-    },
+    # Protocol: HTTP/1.1 only (proxy handles HTTPS)
+    protocol | default = "http1.1",
 
     # Worker configuration
     workers | default = 4,
@@ -180,7 +175,7 @@
   container = {
     name | default = "blue-screen-of-app",
     image | default = "blue-screen-of-app:latest",
-    registry | default = "docker.io",
+    registry | default = "quay.io",
 
     # Rootless mode
     rootless | default = true,

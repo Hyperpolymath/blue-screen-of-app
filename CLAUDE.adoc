@@ -68,9 +68,9 @@ blue-screen-of-app/
 ├── logs/                          # Application logs (auto-created)
 ├── .env.example                   # Environment template
 ├── .gitignore                     # Git ignore rules
-├── .dockerignore                  # Docker ignore rules
-├── Dockerfile                     # Docker configuration
-├── docker-compose.yml             # Docker Compose setup
+├── .containerignore                  # Container ignore rules
+├── Dockerfile                     # Container configuration
+├── podman-compose.yml             # Docker Compose setup
 ├── package.json                   # Dependencies and scripts
 ├── API.md                         # API documentation
 ├── CLAUDE.md                      # This file
@@ -312,7 +312,7 @@ Features:
 
 === Docker Compose
 
-*File*: `docker-compose.yml`
+*File*: `podman-compose.yml`
 
 Features:
 * Environment variable configuration

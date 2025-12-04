@@ -243,8 +243,8 @@ const handler = async (req) => {
   });
 };
 
-// Start server with QUIC/HTTP3 support (Deno experimental)
-const port = config.server.port || 443;
+// Start server with HTTP/1.1 (proxied behind nginx/caddy for HTTPS)
+const port = config.server.port || 8080;
 
 console.log(`
 ╔═══════════════════════════════════════════╗
@@ -253,20 +253,19 @@ console.log(`
 ║       (Deno + ReScript Edition)           ║
 ║                                           ║
 ║   Server running on port ${port}            ║
-║   Protocol: QUIC/HTTP3 + HTTP/2/1.1       ║
+║   Protocol: HTTP/1.1 (proxy to HTTPS)     ║
 ║                                           ║
 ║   Visit: ${config.app.url}                  ║
 ║                                           ║
 ╚═══════════════════════════════════════════╝
 `);
 
-// Deno.serve with HTTP/2 and HTTP/3 support (experimental)
+// Deno.serve with HTTP/1.1 (use nginx/caddy for TLS termination)
 Deno.serve({
   port: port,
   hostname: config.server.host || '0.0.0.0',
-  // Enable HTTP/2 and HTTP/3 (QUIC) - requires --unstable flag
-  // and TLS certificates
   onListen: ({ hostname, port }) => {
     console.log(`✅ Listening on ${hostname}:${port}`);
+    console.log(`💡 Run behind nginx/caddy for HTTPS termination`);
   },
 }, handler);
