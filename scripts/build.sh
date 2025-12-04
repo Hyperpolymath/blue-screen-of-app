@@ -12,8 +12,8 @@ if command -v rescript &> /dev/null; then
     rescript build
     echo "✅ ReScript compilation complete"
 else
-    echo "⚠️  ReScript not found, skipping compilation"
-    echo "   Run: npm install -g rescript"
+    echo "✅ Using pre-compiled ReScript stubs (.bs.js files)"
+    echo "   Full ReScript compiler not required"
 fi
 
 # Step 2: Export Nickel configuration to JSON

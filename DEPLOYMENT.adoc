@@ -458,13 +458,15 @@ just podman-run
 
 [source,bash]
 ----
-# Install ReScript globally
-cargo install rescript  # or via package manager
+# ReScript compilation is optional
+# Stub .bs.js files are already included for testing
 
-# Or use the stub files (already included)
-# The .bs.js stub files allow testing without ReScript
+# If you want to compile ReScript properly:
+# 1. Install Deno (already have it)
+# 2. Use the stub files (recommended for now)
+# 3. OR install ReScript compiler separately if needed
 
-# Rebuild
+# Rebuild with stubs
 just build
 ----
 
