@@ -15,10 +15,10 @@ image:https://img.shields.io/badge/RSR-Bronze-orange[RSR]
 
 [source,bash]
 ----
-# Install: Deno, Podman, Just (manual install)
+./scripts/bootstrap.sh  # Install Deno, Podman, Just
 just build              # Compile ReScript + export config
 just podman-run         # Deploy container
-# Visit http://localhost:8080 (or https://yourserver.com via proxy)
+# Visit https://localhost:443
 ----
 
 == Features
@@ -26,7 +26,7 @@ just podman-run         # Deploy container
 * 🎨 Four authentic BSOD styles (Win10, Win11, Win7, WinXP)
 * 🎭 25+ humorous error messages
 * 📡 REST API with analytics
-* 🔒 HTTP/1.1 with reverse proxy (nginx/caddy)
+* 🔒 QUIC/HTTP3 with HTTP/2 fallback
 * ⚙️ Nickel configuration language
 * 🐳 Rootless Podman containers
 * 🔧 100+ Just recipes
@@ -37,9 +37,9 @@ just podman-run         # Deploy container
 * *Business Logic*: ReScript (type-safe)
 * *Server*: Minimal JavaScript glue code
 * *Containers*: Podman (rootless)
-* *Protocol*: HTTP/1.1 (use nginx/caddy for HTTPS)
+* *Protocols*: QUIC/HTTP3/HTTP2/HTTP1.1
 * *Config*: Nickel → JSON export
-* *Port*: 8080 (proxied to 443)
+* *Port*: 443 (HTTPS)
 
 == Development
 
@@ -57,9 +57,9 @@ See link:DEPLOYMENT.adoc[Deployment Guide] for details.
 
 [source,bash]
 ----
-curl http://localhost:8080/api/error
-curl http://localhost:8080/api/codes
-curl http://localhost:8080/api/health
+curl https://localhost:443/api/error
+curl https://localhost:443/api/codes
+curl https://localhost:443/api/health
 ----
 
 See link:API.adoc[API Documentation].
