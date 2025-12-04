@@ -61,7 +61,7 @@ Please include the following information in your report:
 3. **CORS**: Configurable cross-origin resource sharing
 4. **Input Validation**: All query parameters sanitized
 5. **Error Handling**: No sensitive information leaked in error responses
-6. **Dependencies**: Regular security audits via `npm audit`
+6. **Dependencies**: Zero npm dependencies, pure Deno
 7. **Container Security**: Rootless Podman, minimal base image
 8. **No Secrets**: No hardcoded credentials or API keys
 

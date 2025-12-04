@@ -16,22 +16,24 @@ Before deploying, ensure you have:
 * Just command runner installed
 * Valid TLS certificates for HTTPS/QUIC
 
-=== Bootstrap Installation
+=== Manual Installation
 
-Run the bootstrap script to install all dependencies:
+Install dependencies manually:
 
 [source,bash]
 ----
-./scripts/bootstrap.sh
+# Deno
+curl -fsSL https://deno.land/install.sh | sh
+
+# Podman (Debian/Ubuntu)
+sudo apt install podman
+
+# Just
+cargo install just
+
+# Nickel (optional)
+cargo install nickel-lang-cli
 ----
-
-This will automatically install:
-
-* Podman (if not present)
-* Just command runner
-* Deno runtime
-* ReScript compiler (optional, for development)
-* Nickel (optional, for config editing)
 
 == Build Process
 
