@@ -12,7 +12,7 @@ toc::[]
 Before deploying, ensure you have:
 
 * Deno 1.39+ installed
-* Podman 4.0+ installed
+* Podman 4.0+ installed (or Docker as fallback)
 * Just command runner installed
 * Valid TLS certificates for HTTPS/QUIC
 
@@ -214,8 +214,8 @@ nix run
 # Enter development shell
 nix develop
 
-# Build Container image with Nix
-nix build .#containerImage
+# Build Docker image with Nix
+nix build .#dockerImage
 ----
 
 == QUIC/HTTP3 Configuration
@@ -459,7 +459,7 @@ just podman-run
 [source,bash]
 ----
 # Install ReScript globally
-cargo install rescript  # or via package manager
+npm install -g rescript
 
 # Or use the stub files (already included)
 # The .bs.js stub files allow testing without ReScript

@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * CODE_OF_CONDUCT.md for community standards
 * .env.example with configuration template
 * .gitignore for Node.js projects
-* .containerignore for Docker builds
+* .dockerignore for Docker builds
 * Azure Web App deployment workflow
 
 === Features
