@@ -93,7 +93,9 @@
     },
 
     cors = {
-      origin | default = "*",
+      # Set specific origins instead of wildcard for production security
+      # Use comma-separated list for multiple origins, e.g., "https://example.com,https://app.example.com"
+      origin | default = "https://localhost",
       methods | default = ["GET", "POST"],
       allowedHeaders | default = ["Content-Type", "Authorization"],
       exposedHeaders | default = [],

@@ -102,11 +102,30 @@ const handler = async (req) => {
   const url = new URL(req.url);
   const path = url.pathname;
 
-  // CORS headers
+  // Get allowed origin from request or use default
+  const requestOrigin = req.headers.get('Origin');
+  const allowedOrigins = (Deno.env.get('CORS_ORIGIN') || '').split(',').filter(Boolean);
+  const corsOrigin = allowedOrigins.length > 0
+    ? (allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0])
+    : (requestOrigin || 'https://localhost');
+
+  // Security headers (Helmet.js equivalent)
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    // CORS headers - restricted to specific origins
+    'Access-Control-Allow-Origin': corsOrigin,
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    // Security headers
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '0',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Cross-Origin-Opener-Policy': 'same-origin',
+    'Cross-Origin-Resource-Policy': 'same-origin',
+    'X-DNS-Prefetch-Control': 'off',
+    'X-Download-Options': 'noopen',
+    'X-Permitted-Cross-Domain-Policies': 'none',
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   };
 
   // Health check
