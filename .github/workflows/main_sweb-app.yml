@@ -6,6 +6,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Minimum required permissions for this workflow
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [main]
 
+# Minimum required permissions for this workflow
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Test & Build
