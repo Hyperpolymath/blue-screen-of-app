@@ -1,77 +1,76 @@
-= Blue Screen of App
-:toc:
+= Blue-Screen-of-App
+Jonathan D.A. Jewell <jonathan.jewell@gmail.com>
+:toc: macro
 :icons: font
+:source-highlighter: rouge
+:experimental:
+:url-github: https://github.com/hyperpolymath/Blue-Screen-of-App
+:url-gitlab: https://gitlab.com/hyperpolymath/Blue-Screen-of-App
+:url-bitbucket: https://bitbucket.org/hyperpolymath/Blue-Screen-of-App
+:url-codeberg: https://codeberg.org/hyperpolymath/Blue-Screen-of-App
 
-[.lead]
-_Does exactly what it says on the tin... or screen._
+Application crash analysis and diagnostic toolkit
 
-A humorous web app displaying authentic Blue Screen of Death errors. Built with *Deno*, *ReScript*, and *Podman*.
+image:https://img.shields.io/badge/RSR-Certified-gold[RSR Certified]
+image:https://img.shields.io/badge/License-AGPL%20v3-blue[License]
 
-image:https://img.shields.io/badge/License-GPL--3.0--or--Palimpsest--0.8-blue.svg[License,link=LICENSE]
-image:https://img.shields.io/badge/deno-2.0-brightgreen[Deno]
-image:https://img.shields.io/badge/RSR-Bronze-orange[RSR]
+toc::[]
 
-== Quick Start
+== Overview
 
-[source,bash]
-----
-./scripts/bootstrap.sh  # Install Deno, Podman, Just
-just build              # Compile ReScript + export config
-just podman-run         # Deploy container
-# Visit https://localhost:443
-----
+Blue-Screen-of-App is part of the link:https://rhodium.sh[Rhodium Standard] (RSR) ecosystem.
 
-== Features
+Domain: *software-development*
 
-* 🎨 Four authentic BSOD styles (Win10, Win11, Win7, WinXP)
-* 🎭 25+ humorous error messages
-* 📡 REST API with analytics
-* 🔒 QUIC/HTTP3 with HTTP/2 fallback
-* ⚙️ Nickel configuration language
-* 🐳 Rootless Podman containers
-* 🔧 100+ Just recipes
-
-== Architecture
-
-* *Runtime*: Deno (no Node.js, no npm)
-* *Business Logic*: ReScript (type-safe)
-* *Server*: Minimal JavaScript glue code
-* *Containers*: Podman (rootless)
-* *Protocols*: QUIC/HTTP3/HTTP2/HTTP1.1
-* *Config*: Nickel → JSON export
-* *Port*: 443 (HTTPS)
-
-== Development
+== Installation
 
 [source,bash]
 ----
-just dev           # Development mode
-just test          # Run tests
-just build         # Compile everything
-just validate      # RSR compliance check
+# Clone from GitHub (primary)
+git clone {url-github}
+
+# Or from mirrors
+git clone {url-gitlab}
+git clone {url-codeberg}
 ----
 
-See link:DEPLOYMENT.adoc[Deployment Guide] for details.
+== RSR Stack
 
-== API
+This project follows RSR conventions:
 
-[source,bash]
-----
-curl https://localhost:443/api/error
-curl https://localhost:443/api/codes
-curl https://localhost:443/api/health
-----
+* ✅ ReScript for frontend/logic
+* ✅ Deno for JS runtime
+* ✅ WASM for performance-critical code
+* ✅ Rust/OCaml/Haskell for systems/proofs
+* ✅ Guile/Scheme for configuration
+* ❌ No TypeScript
+* ❌ No Go
+* ❌ No npm
 
-See link:API.adoc[API Documentation].
+== Mirrors
 
-== Contributing
+[cols="1,2"]
+|===
+| Platform | URL
 
-See link:CONTRIBUTING.adoc[Contributing] and link:TPCF.adoc[TPCF].
+| GitHub (primary) | {url-github}
+| GitLab | {url-gitlab}
+| Bitbucket | {url-bitbucket}
+| Codeberg | {url-codeberg}
+|===
 
 == License
 
-Dual-licensed: GPL-3.0-or-later OR Palimpsest-0.8. See link:LICENSE[LICENSE].
+Licensed under AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5.
 
----
+See link:LICENSE[LICENSE] for details.
 
-💙 *It's not a bug, it's a CRITICAL_PROCESS_DIED error!*
+== Contributing
+
+See link:CONTRIBUTING.adoc[CONTRIBUTING.adoc].
+
+== Metadata
+
+* Domain: software-development
+* Framework: RSR (Rhodium Standard Repository)
+* Dublin Core: link:.well-known/dc.xml[.well-known/dc.xml]
