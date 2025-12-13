@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Azure deployment (Deno-based)
 name: Deploy to Azure
 
@@ -6,17 +7,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Minimum required permissions for this workflow
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - uses: denoland/setup-deno@11b63cf76cfcafb4e43f97b6cad24d8e8438f62d # v1.5.2
+      - uses: denoland/setup-deno@5fae568d37c3b73449009674875529a984555dd1 # v2.0.2
         with:
           deno-version: v1.x
 
@@ -27,7 +28,7 @@ jobs:
           EOF
           deno cache src/server.js
 
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
         with:
           name: deno-app
           path: |
@@ -38,16 +39,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: read
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           name: deno-app
 
-      - uses: azure/webapps-deploy@122b7ec46017e53a3f71e3a027d67550a1641f5e # v2.2.17
+      - uses: azure/webapps-deploy@2fdd5c3ebb4f540834e86ecc1f6fdcd5539023ee # v3.0.2
         id: deploy-to-webapp
         with:
           app-name: 'sweb-app'
