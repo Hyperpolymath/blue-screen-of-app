@@ -27,7 +27,7 @@ jobs:
       - name: ReScript build
         run: |
           if [ -f "rescript.json" ] || [ -f "bsconfig.json" ]; then
-            npm install
+            npm install rescript@11.1.4 @rescript/core@1.6.1
             npx rescript
           fi
 
